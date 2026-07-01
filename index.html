@@ -427,4 +427,117 @@ const PAGES={
 <div class="rrow"><span class="lb">Рост</span><span class="vl">178 – 181 см</span></div>`,
 
   links:`<h2>// LINKS //</h2>
-<div class="rlink"><span class="lb">Steam</span><a href="https://steamcommunity.com/id/kyousuke7491/" target="_blank" rel="noopener">TAP HERE<span class="badge">↗</s
+<div class="rlink"><span class="lb">Steam</span><a href="https://steamcommunity.com/id/kyousuke7491/" target="_blank" rel="noopener">TAP HERE<span class="badge">↗</span></a></div>
+<div class="rlink"><span class="lb">Instagram</span><a href="https://www.instagram.com/nexsyz_me?igsh=MW5zZDR4b2Y1ZmtsOA==" target="_blank" rel="noopener">nexsyz_me<span class="badge">↗</span></a></div>
+<div class="rlink"><span class="lb">Telegram</span><a href="https://t.me/nexsyzz_me" target="_blank" rel="noopener">nexsyzz_me<span class="badge">↗</span></a></div>
+<div class="rlink"><span class="lb">Spotify</span><a href="https://open.spotify.com/user/31wr7exwgu5sgpecsexqr3mwwspe?si=dbda703e28e545c0" target="_blank" rel="noopener">Profile<span class="badge">↗</span></a></div>
+<div class="rlink"><span class="lb">TikTok</span><a href="https://tiktok.com/@lerety2" target="_blank" rel="noopener">@lerety2<span class="badge">↗</span></a></div>`,
+
+  hobby:`<h2>// HOBBY //</h2>
+<div class="hblock">
+<div class="tag">🚶 Люблю гулять</div>
+<div class="tag">⚔️ Игрок анархии 1.21.11 · Funtime.su</div>
+<div class="tag">🎯 300+ КС игрок</div>
+<div class="sec">▸ ПРОЙДЕННЫЕ ИГРЫ</div>
+<div>Red Dead Redemption 2</div>
+<div>Metro Exodus</div>
+<div>GTA 5</div>
+<div>The Forest</div>
+<div>Sons of the Forest</div>
+<div>Все части Call of Duty</div>
+<div>Все части Far Cry</div>
+<div>Все части Need for Speed</div>
+<div>Все части Battlefield</div>
+</div>`
+};
+
+function handleSearch(v){
+  const q=v.trim().toLowerCase();
+  if(q==='bio'){openResult('bio');return}
+  if(q==='links'){openResult('links');return}
+  if(q==='hobby'){openResult('hobby');return}
+  glitch(document.getElementById('tl'));playBeep(180,.2);
+}
+function openResult(key){
+  document.getElementById('rcard').innerHTML=PAGES[key];
+  document.getElementById('result-page').classList.add('show');
+  glitch(document.getElementById('tl'));playBeep(500,.09);
+}
+window.closeResult=function(){
+  document.getElementById('result-page').classList.remove('show');
+  document.getElementById('sinput').value='';
+};
+
+// Search on Enter (keyboard + mobile)
+document.getElementById('sinput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();handleSearch(e.target.value)}});
+document.getElementById('sinput').addEventListener('search',e=>handleSearch(e.target.value));
+
+// ── TRACKS ──
+const TRACKS=[
+  {title:'Prayer In C',                  file:'2_5471952948315583208.m4a',               cover:'Lilly_Wood_and_the_Prick_and_Robin_Schulz_-_Prayer_in_C.png'},
+  {title:'Рваные Джинсы — Jeff Killer',  file:'2_5283263838022573725 (1).m4a',           cover:'artworks-000261006380-qi1ztr-t1080x1080.jpg'},
+  {title:'Гладиатор / Рыцарь',           file:'Fallen777angel - Гладиатор (рыцарь) (1).mp3', cover:'7c5bac9ae02194b81f86415736bfcad5.1000x1000x1.png'}
+];
+let tIdx=0;
+const aud=document.getElementById('audio');
+
+function openPlayer(){loadTrack(0);document.getElementById('player').classList.add('open')}
+function loadTrack(i){
+  tIdx=i;const t=TRACKS[i];
+  aud.src=t.file;
+  document.getElementById('p-title').textContent=t.title;
+  document.getElementById('p-cover').src=t.cover;
+  document.getElementById('p-play').textContent='▶';
+  aud.load();aud.play().then(()=>document.getElementById('p-play').textContent='⏸').catch(()=>{});
+}
+window.togglePlay=function(){if(aud.paused){aud.play();document.getElementById('p-play').textContent='⏸'}else{aud.pause();document.getElementById('p-play').textContent='▶'}};
+window.nextTrack=function(){loadTrack((tIdx+1)%TRACKS.length)};
+window.prevTrack=function(){loadTrack((tIdx-1+TRACKS.length)%TRACKS.length)};
+aud.addEventListener('ended',()=>window.nextTrack());
+aud.addEventListener('timeupdate',()=>{
+  if(!aud.duration)return;
+  const p=(aud.currentTime/aud.duration)*100;
+  document.getElementById('p-seek').value=p;
+  document.getElementById('p-cur').textContent=fmt(aud.currentTime);
+  document.getElementById('p-dur').textContent=fmt(aud.duration);
+});
+document.getElementById('p-seek').addEventListener('input',function(){if(aud.duration)aud.currentTime=(this.value/100)*aud.duration});
+function fmt(s){const m=Math.floor(s/60),sc=Math.floor(s%60);return m+':'+(sc<10?'0':'')+sc}
+
+// ── EASTER EGGS ──
+const MEMES=['* двигайся за ящиком *','* вотч демо *','* sudo make sandwich *','* следи за курсором *','* ты в матрице *','* не нажимай F12 *','* я вижу тебя *','* git push --force *','* reboot required *','* trust no one *'];
+let duckOut=false,memeOut=false;
+
+function spawnDuck(){
+  if(!eggsOn||duckOut)return;duckOut=true;
+  playNotif();
+  const d=document.getElementById('duck');d.textContent='🦆  quack.exe';d.classList.add('fly');
+  d.addEventListener('animationend',()=>{d.classList.remove('fly');duckOut=false},{once:true});
+}
+function spawnMeme(){
+  if(!eggsOn||memeOut)return;memeOut=true;
+  playNotif();
+  const el=document.createElement('div');el.className='meme';
+  el.textContent=MEMES[Math.floor(Math.random()*MEMES.length)];
+  const side=Math.random()>.5;
+  el.style.top=(14+Math.random()*55)+'vh';
+  el.style[side?'left':'right']=(3+Math.random()*10)+'vw';
+  document.body.appendChild(el);
+  el.addEventListener('animationend',()=>{el.remove();memeOut=false});
+}
+function scheduleEggs(){
+  (function dt(){setTimeout(()=>{spawnDuck();dt()},26000+Math.random()*28000)})();
+  setTimeout(()=>(function mt(){setTimeout(()=>{spawnMeme();mt()},13000+Math.random()*15000)})(),9000);
+}
+const KON=[38,38,40,40,37,39,37,39,66,65];let ki=0;
+document.addEventListener('keydown',e=>{if(e.keyCode===KON[ki])ki++;else ki=0;if(ki===KON.length){ki=0;spawnMeme();spawnDuck()}});
+
+// ── INIT ENTER SCREEN ──
+window.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>document.getElementById('enter-logo').classList.add('show'),250);
+  setTimeout(()=>document.getElementById('enter-sub').classList.add('show'),520);
+  setTimeout(()=>document.getElementById('btn-enter').classList.add('show'),800);
+});
+</script>
+</body>
+</html>
