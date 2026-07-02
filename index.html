@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>NexsyzBio — TekCTO</title>
+<title>NexsyzBio — 0.1.1</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
 
@@ -243,7 +243,7 @@ body{animation:flk 10s infinite}
 <!-- ENTER -->
 <div id="enter-screen">
   <div id="enter-logo">NexsyzBio</div>
-  <div id="enter-sub">// TEKCTO TERMINAL v2.4 //</div>
+  <div id="enter-sub">// BIOS TERMINAL v1.6.7 //</div>
   <button id="btn-enter">[ ВОЙТИ ]</button>
 </div>
 
@@ -252,7 +252,7 @@ body{animation:flk 10s infinite}
   <div id="hero">
     <div id="hl">Hello, you're in</div>
     <div id="tl">NexsyzBio</div>
-    <div id="sl">TekCTO</div>
+    <div id="sl">0.1.1</div>
   </div>
 </div>
 
@@ -375,7 +375,7 @@ function animFL(done){
 function glitch(el){el.classList.remove('glitch');void el.offsetWidth;el.classList.add('glitch');el.addEventListener('animationend',()=>el.classList.remove('glitch'),{once:true})}
 
 // ── BOOT LOG ──
-const LOG=['BIOS v2.4.1 ......... OK','KERNEL LOADED ...... OK','MOUNTING /nexsyz ... OK','SECURE LINK ........ OK','ID: TekCTO ......... OK','WELCOME, OPERATOR'];
+const LOG=['BIOS v1.6.7 ......... OK','KERNEL LOADED ...... OK','MOUNTING /nexsyz ... OK','SECURE LINK ........ OK','ID: 0.1.1 ......... OK','WELCOME! '];
 function typeLog(i=0){if(i>=LOG.length)return;const el=document.getElementById('blog'),d=document.createElement('div');d.textContent='> '+LOG[i];el.appendChild(d);playBeep(380+i*35,.055);setTimeout(()=>typeLog(i+1),400)}
 
 // ── ENTER BUTTON ──
@@ -429,7 +429,7 @@ const PAGES={
   links:`<h2>// LINKS //</h2>
 <div class="rlink"><span class="lb">Steam</span><a href="https://steamcommunity.com/id/kyousuke7491/" target="_blank" rel="noopener">TAP HERE<span class="badge">↗</span></a></div>
 <div class="rlink"><span class="lb">Instagram</span><a href="https://www.instagram.com/nexsyz_me?igsh=MW5zZDR4b2Y1ZmtsOA==" target="_blank" rel="noopener">nexsyz_me<span class="badge">↗</span></a></div>
-<div class="rlink"><span class="lb">Telegram</span><a href="https://t.me/nexsyzz_me" target="_blank" rel="noopener">nexsyzz_me<span class="badge">↗</span></a></div>
+<div class="rlink"><span class="lb">Telegram</span><a href="https://t.me/nexsyz_me" target="_blank" rel="noopener">nexsyzz_me<span class="badge">↗</span></a></div>
 <div class="rlink"><span class="lb">Spotify</span><a href="https://open.spotify.com/user/31wr7exwgu5sgpecsexqr3mwwspe?si=dbda703e28e545c0" target="_blank" rel="noopener">Profile<span class="badge">↗</span></a></div>
 <div class="rlink"><span class="lb">TikTok</span><a href="https://tiktok.com/@lerety2" target="_blank" rel="noopener">@lerety2<span class="badge">↗</span></a></div>`,
 
