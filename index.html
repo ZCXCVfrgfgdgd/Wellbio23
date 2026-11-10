@@ -248,7 +248,7 @@ $('#lf').addEventListener('submit',e=>{
 (async()=>{
   if(get('zumra')){
     broken=true;$('#intro').classList.remove('hide');await sleep(900);
-    await typeTo($('#itxt'),'Ой-ой-ой... вы походу увидели Зумру. Ничего страшного, всё хорошо.',90);
+    await typeTo($('#itxt'),'Загрузка..........',90);
     await sleep(3000);$('#intro').classList.add('hide');await sleep(1000);
   }
   $('#lock').classList.remove('hide');$('#pw').focus();
